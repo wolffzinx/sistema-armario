@@ -30,6 +30,10 @@ app.use('/alunos', alunosRoutes);
 app.use('/armarios', armariosRoutes);
 app.use('/gavetas', gavetasRoutes);
 
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
 // Iniciar o servidor
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
