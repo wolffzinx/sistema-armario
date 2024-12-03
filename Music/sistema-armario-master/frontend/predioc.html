@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Armários</title>
+   
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #e0f7fa; 
+        }
+
+        .locker {
+            width: 120px;
+            height: 120px;
+            margin: 10px;
+        }
+
+        .available {
+            background-color: #28a745; /* disponível */
+            color: white;
+        }
+
+        .occupied {
+            background-color: #5899e8; /* ocupado */
+            color: white;
+        }
+
+        .overdue {
+            background-color: #fd7e29; /* em atraso */
+            color: white;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+        }
+
+        .nav-icons {
+            position: fixed;
+            top: 20px;
+            font-size: 24px;
+            color: #000;
+        }
+
+        .nav-left {
+            left: 20px;
+        }
+
+        .nav-right {
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+
+
+<a href="inicio.html" class="nav-icons nav-left"><i class="fas fa-arrow-left"></i></a>
+<a href="prediod.html" class="nav-icons nav-right"><i class="fas fa-arrow-right"></i></a>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Prédio C</h1>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adicionarArmarioModal">
+        Adicionar Armário
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="adicionarArmarioModal" tabindex="-1" aria-labelledby="adicionarArmarioModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="adicionarArmarioModalLabel">Adicionar Novo Armário</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-adicionar-armario" onsubmit="event.preventDefault(); adicionarArmario();">
+                        <div class="form-group">
+                            <label for="numero">Número do Armário:</label>
+                            <input type="text" id="numero" class="form-control" placeholder="Exemplo: A1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="localizacao">Localização:</label>
+                            <input type="text" id="localizacao" class="form-control" placeholder="Exemplo: 1º andar" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Adicionar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="adicionarArmario.js"></script> <!-- Script com a função -->
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="card locker available">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 1</h5>
+                    <p class="card-text">Disponível</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker available">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 2</h5>
+                    <p class="card-text">Disponível</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker available">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 3</h5>
+                    <p class="card-text">Disponível</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker available">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 4</h5>
+                    <p class="card-text">Disponível</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker available">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 5</h5>
+                    <p class="card-text">Disponível</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker available">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 6</h5>
+                    <p class="card-text">Disponível</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker occupied">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 7</h5>
+                    <p class="card-text">Ocupado</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker occupied">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 8</h5>
+                    <p class="card-text">Ocupado</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker occupied">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 9</h5>
+                    <p class="card-text">Ocupado</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker occupied">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 10</h5>
+                    <p class="card-text">Ocupado</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker occupied">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 11</h5>
+                    <p class="card-text">Ocupado</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker occupied">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 12</h5>
+                    <p class="card-text">Ocupado</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker overdue">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 13</h5>
+                    <p class="card-text">Em atraso</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker overdue">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 14</h5>
+                    <p class="card-text">Em atraso</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker overdue">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 15</h5>
+                    <p class="card-text">Em atraso</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker overdue">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 16</h5>
+                    <p class="card-text">Em atraso</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker available">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 17</h5>
+                    <p class="card-text">Disponível</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker available">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 18</h5>
+                    <p class="card-text">Disponível</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker available">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 19</h5>
+                    <p class="card-text">Disponível</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker available">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 20</h5>
+                    <p class="card-text">Disponível</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker available">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 21</h5>
+                    <p class="card-text">Disponível</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker available">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 22</h5>
+                    <p class="card-text">Disponível</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker available">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 23</h5>
+                    <p class="card-text">Disponível</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker occupied">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 24</h5>
+                    <p class="card-text">Ocupado</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker occupied">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 25</h5>
+                    <p class="card-text">Ocupado</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker occupied">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 26</h5>
+                    <p class="card-text">Ocupado</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker occupied">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 27</h5>
+                    <p class="card-text">Ocupado</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker available">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 28</h5>
+                    <p class="card-text">Disponível</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker available">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 29</h5>
+                    <p class="card-text">Disponível</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker overdue">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 30</h5>
+                    <p class="card-text">Em atraso</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker occupied">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 31</h5>
+                    <p class="card-text">Ocupado</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card locker occupied">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Armário 32</h5>
+                    <p class="card-text">Ocupado</p>
+                </div>
+            </div>
+        </div>
