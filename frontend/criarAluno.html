@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Aluno</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #9dbbd6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px 30px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .card h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #5c87b2;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .btn-primary:hover {
+            background-color: #4a7499;
+        }
+
+        .mensagem {
+            margin-top: 10px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .mensagem.success {
+            color: #28a745;
+        }
+
+        .mensagem.error {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Criar Novo Aluno</h1>
+        <form id="form-criar-aluno">
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="matricula">Matrícula:</label>
+                <input type="text" id="matricula" name="matricula" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telefone">Telefone:</label>
+                <input type="text" id="telefone" name="telefone" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="status_pagamento">Pagamento em dia:</label>
+                <input type="checkbox" id="status_pagamento" name="status_pagamento">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Criar Aluno</button>
+        </form>
+        <div id="mensagem-container" class="mensagem"></div>
+    </div>
+
+    <script src="criarAluno.js"></script> <!-- Script com o código JavaScript -->
+</body>
+</html>
